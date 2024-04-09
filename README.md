@@ -1,0 +1,1 @@
+# revolut-to-homebank-parser
