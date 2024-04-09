@@ -8,7 +8,7 @@ function computeType(type) {
         case "TOPUP":
             return 0;
         default:
-            console.log('unknowk type', type);
+            console.log('unknown type', type);
             return 0;
     }
 }
