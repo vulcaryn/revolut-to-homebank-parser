@@ -27,7 +27,3 @@ function computeType(type) {
     writeStream.insertLines(data);
     writeStream.close();
 })();
-
-//15-02-04;0;;;Some cash;-40,00;Bill:Withdrawal of cash;tag1 tag2
-//15-02-04;1;;;Internet DSL;-45,00;Inline service/Internet;tag2 my-tag3
-//date ; payment ; info ; payee ; memo ; amount ; category ; tags
