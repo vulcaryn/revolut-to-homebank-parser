@@ -1,9 +1,9 @@
-const fs = require('fs');
-const events = require('events');
-const { createReadStream } = require('fs');
-const readline = require('readline');
+import fs from 'node:fs';
+import events from 'node:events';
+import { createReadStream } from 'node:fs';
+import readline from 'node:readline';
 
-class FileReader {
+export class FileReader {
     constructor(path) {
         this.readStream = createReadStream(path);
     }
@@ -31,7 +31,7 @@ class FileReader {
     }
 }
 
-class FileWriter {
+export class FileWriter {
     constructor(filename) {
         this._filename = filename;
         if (!this._filename) {
@@ -57,8 +57,3 @@ class FileWriter {
         this.writeStream.end();
     }
 }
-
-module.exports = {
-    FileReader,
-    FileWriter
-};

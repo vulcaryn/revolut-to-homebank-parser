@@ -1,3 +1,5 @@
+import { FileReader, FileWriter } from './files.tools.js';
+
 function computeType(type) {
     switch (type) {
         case "CARD_PAYMENT":
@@ -12,8 +14,8 @@ function computeType(type) {
             return 0;
     }
 }
+
 (async function () {
-    const { FileReader, FileWriter } = require('./files.tools');
     const fileReader = new FileReader('./test.csv');
     const writeStream = new FileWriter('result.csv');
     const data = [];
