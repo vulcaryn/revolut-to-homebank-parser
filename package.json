@@ -1,21 +1,24 @@
 {
   "name": "revolut-to-homebank-parser",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple module to reformat revolut account extract into an Homebank compatible one",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vulcaryn/revolut-to-homebank-parser.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["homebank", "revolut", "parser"],
+  "author": "Morgan Denis",
+  "license": "GPLv3",
   "bugs": {
     "url": "https://github.com/vulcaryn/revolut-to-homebank-parser/issues"
   },
-  "homepage": "https://github.com/vulcaryn/revolut-to-homebank-parser#readme"
+  "homepage": "https://github.com/vulcaryn/revolut-to-homebank-parser#readme",
+  "devDependencies": {
+    "vitest": "^1.5.0"
+  }
 }
