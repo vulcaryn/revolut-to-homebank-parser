@@ -18,4 +18,4 @@ jobs:
       - name: Check lint
         run: npm run eslint:check
       - name: Test
-        run: npm run test
+        run: npm run test:ci

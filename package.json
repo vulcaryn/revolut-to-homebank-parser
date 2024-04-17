@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
+    "test:ci": "vitest --run",
     "eslint:check": "npx eslint .",
     "eslint:fix": "npx eslint --fix ."
   },
