@@ -1,6 +1,5 @@
 node_modules
 .idea
-*.csv
 test/input-output.csv
 test/output.csv
 test/fail-output.csv
