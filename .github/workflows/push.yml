@@ -1,0 +1,21 @@
+name: Push
+
+on:
+  push:
+    branches:  '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 21.x
+      - name: Install deps
+        run: npm ci
+      - name: Check lint
+        run: npm run eslint:check
+      - name: Test
+        run: npm run test
