@@ -1,0 +1,7 @@
+.idea
+test
+*.test.js
+eslint.config.js
+.gitignore
+.github
+node_modules

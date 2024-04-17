@@ -1,5 +1,6 @@
 # revolut-to-homebank-parser
 
+## General
 A basic parser to transform a Revolut csv export into a homebank compatible csv.
 
 Revolut basic format:
@@ -13,3 +14,31 @@ Homebank compatible format:
 ```
 
 All details of homebank format can be found [here](http://homebank.free.fr/help/misc-csvformat.html)
+
+## Usage
+
+### CLI
+
+Directly in a terminal when node is installed.
+```bash
+npx revolut-to-homebank-parser file.csv output.csv
+```
+
+### In a project
+Install as dependency
+```bash
+npm i -s revolut-to-homebank-parser
+```
+
+Usage
+```javascript
+import revolutToHomebankParser from 'revolut-to-homebank-parser/parser';
+
+const result = await revolutToHomebankParser('file.csv', 'output.csv');
+if (result.success) {
+    // do some interesting stuff
+}
+if (result.error) {
+    // trace interesting informations
+}
+```
