@@ -5,16 +5,16 @@ import { FileReader, FileWriter } from './files.tools.js';
  * @param {string} type
  * @returns {number}
  */
-function computeType(type) {
+function computeType (type) {
     switch (type) {
-        case "CARD_PAYMENT":
-            return 6;
-        case "TRANSFER":
-            return 4;
-        case "EXCHANGE":
-        case "TOPUP":
-        default:
-            return 0;
+    case 'CARD_PAYMENT':
+        return 6;
+    case 'TRANSFER':
+        return 4;
+    case 'EXCHANGE':
+    case 'TOPUP':
+    default:
+        return 0;
     }
 }
 
@@ -23,8 +23,8 @@ function computeType(type) {
  * @param {string} line
  * @returns {string|boolean}
  */
-export function parseLine(line) {
-    const [type,,,date,description,amount] = line.split(',');
+export function parseLine (line) {
+    const [type,,, date, description, amount] = line.split(',');
     if (isNaN(amount)) return false;
     return `${date.split(' ')[0]};${computeType(type)};;${description};;${amount};;`;
 }
@@ -35,7 +35,7 @@ export function parseLine(line) {
  * @param {string} outputFile
  * @returns {Promise<{parsedLines: number, success: boolean, totalLines: number, error: (string|boolean)}>}
  */
-export default async function parser(inputFile, outputFile) {
+export default async function parser (inputFile, outputFile) {
     let totalLines = 0;
     let parsedLines = 0;
 
@@ -55,7 +55,7 @@ export default async function parser(inputFile, outputFile) {
             totalLines += 1;
             const parsedLine = parseLine(line);
             if (parsedLine) {
-                parsedLines+=1;
+                parsedLines += 1;
                 data.push(parsedLine);
             }
         });

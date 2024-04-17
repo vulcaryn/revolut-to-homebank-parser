@@ -1,14 +1,13 @@
-import fs from 'node:fs';
+import fs, { createReadStream } from 'node:fs';
 import events from 'node:events';
-import { createReadStream } from 'node:fs';
 import readline from 'node:readline';
 
 export class FileReader {
-    constructor(path) {
+    constructor (path) {
         this.readStream = createReadStream(path);
     }
 
-    async start(fn) {
+    async start (fn) {
         try {
             const rl = readline.createInterface({
                 input: this.readStream,
@@ -32,7 +31,7 @@ export class FileReader {
 }
 
 export class FileWriter {
-    constructor(filename) {
+    constructor (filename) {
         this._filename = filename;
         if (!this._filename) {
             throw new Error('filename is required for creating a file');
@@ -43,17 +42,17 @@ export class FileWriter {
         this.writeStream = fs.createWriteStream(this._filename, { flags: 'a' });
     }
 
-    insertLines(lines) {
+    insertLines (lines) {
         lines.map((line) => this.insertLine(line));
     }
 
-    insertLine(line) {
+    insertLine (line) {
         if (line) {
             this.writeStream.write(`${line}\n`, 'utf-8');
         }
     }
 
-    close() {
+    close () {
         this.writeStream.end();
     }
 }

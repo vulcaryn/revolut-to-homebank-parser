@@ -5,13 +5,19 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "eslint:check": "npx eslint .",
+    "eslint:fix": "npx eslint --fix ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vulcaryn/revolut-to-homebank-parser.git"
   },
-  "keywords": ["homebank", "revolut", "parser"],
+  "keywords": [
+    "homebank",
+    "revolut",
+    "parser"
+  ],
   "author": "Morgan Denis",
   "license": "GPLv3",
   "bugs": {
@@ -19,6 +25,14 @@
   },
   "homepage": "https://github.com/vulcaryn/revolut-to-homebank-parser#readme",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "globals": "^15.0.0",
     "vitest": "^1.5.0"
   }
 }

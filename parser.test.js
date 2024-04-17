@@ -1,5 +1,5 @@
 import { expect, test, describe } from 'vitest';
-import parser, {parseLine} from './parser.js';
+import parser, { parseLine } from './parser.js';
 import fs from 'node:fs/promises';
 
 describe('parseLine', () => {
@@ -10,7 +10,7 @@ describe('parseLine', () => {
     });
 
     test('valid payement list', () => {
-        const line ='CARD_PAYMENT,Current,2024-02-29 14:03:44,2024-03-01 03:48:15,Amazon,-35.00,0.00,EUR,COMPLETED,128.98';
+        const line = 'CARD_PAYMENT,Current,2024-02-29 14:03:44,2024-03-01 03:48:15,Amazon,-35.00,0.00,EUR,COMPLETED,128.98';
         const expectedResult = '2024-03-01;6;;Amazon;;-35.00;;';
         expect(parseLine(line)).toBe(expectedResult);
     });
@@ -34,7 +34,7 @@ describe('parser', () => {
         expect(result.error).toBe(false);
         expect(result.success).toBe(true);
         expect(output).toEqual(outputExpected);
-    })
+    });
 
     test('should correctly read, parse and save the file without output file', async () => {
         const result = await parser('./test/input.csv');
@@ -45,5 +45,5 @@ describe('parser', () => {
         expect(result.error).toBe(false);
         expect(result.success).toBe(true);
         expect(output).toEqual(outputExpected);
-    })
-})
+    });
+});
