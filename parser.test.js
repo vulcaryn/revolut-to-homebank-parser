@@ -2,8 +2,8 @@ import { expect, test, describe } from 'vitest';
 import parser, { parseLine } from './parser.js';
 import fs from 'node:fs/promises';
 
-describe('parseLine', () => {
-    test.only('valid transfer line', () => {
+describe.skip('parseLine', () => {
+    test('valid transfer line', () => {
         const line = 'TRANSFER,Savings,2024-03-05 07:30:20,2024-03-05 07:30:20,To EUR savings,3.00,0.00,EUR,COMPLETED,32.02';
         const expectedResult = '2024-03-05;4;;To EUR savings;;3.00;;';
         expect(parseLine(line)).toBe(expectedResult);
@@ -24,8 +24,8 @@ describe('parseLine', () => {
     });
 });
 
-describe.skip('parser', () => {
-    test('should correctly read, parse and save the file', async () => {
+describe('parser', () => {
+    test.only('should correctly read, parse and save the file', async () => {
         const result = await parser('./test/input.csv', './test/output.csv');
         const output = await fs.readFile('./test/output.csv', 'utf8');
         const outputExpected = await fs.readFile('./test/expected-output.csv', 'utf8');
