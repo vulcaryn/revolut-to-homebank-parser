@@ -8,25 +8,21 @@ export class FileReader {
     }
 
     async start (fn) {
-        try {
-            const rl = readline.createInterface({
-                input: this.readStream,
-                crlfDelay: Infinity
-            });
-            let lineNumber = 0;
-            rl.on('line', (line) => {
-                fn(line, lineNumber);
-                lineNumber += 1;
-            });
+        const rl = readline.createInterface({
+            input: this.readStream,
+            crlfDelay: Infinity
+        });
+        let lineNumber = 0;
+        rl.on('line', (line) => {
+            fn(line, lineNumber);
+            lineNumber += 1;
+        });
 
-            await events.once(rl, 'close');
+        await events.once(rl, 'close');
 
-            console.log('Reading file line by line with readline done.');
-            const used = process.memoryUsage().heapUsed / 1024 / 1024;
-            console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB to read ${lineNumber} lines`);
-        } catch (err) {
-            console.error(err);
-        }
+        console.log('Reading file line by line with readline done.');
+        const used = process.memoryUsage().heapUsed / 1024 / 1024;
+        console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB to read ${lineNumber} lines`);
     }
 }
 

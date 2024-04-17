@@ -32,7 +32,7 @@ export function parseLine (line) {
 /**
  * File parser
  * @param {string} inputFile
- * @param {string} outputFile
+ * @param {string} [outputFile]
  * @returns {Promise<{parsedLines: number, success: boolean, totalLines: number, error: (string|boolean)}>}
  */
 export default async function parser (inputFile, outputFile) {

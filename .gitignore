@@ -3,3 +3,4 @@ node_modules
 *.csv
 test/input-output.csv
 test/output.csv
+test/fail-output.csv

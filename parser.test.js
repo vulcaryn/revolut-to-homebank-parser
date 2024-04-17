@@ -46,4 +46,10 @@ describe('parser', () => {
         expect(result.success).toBe(true);
         expect(output).toEqual(outputExpected);
     });
+
+    test('should fail correctly', async () => {
+        const result = await parser('./test/fail.csv');
+        expect(result.error).toBe("ENOENT: no such file or directory, open './test/fail.csv'");
+        expect(result.success).toBe(false);
+    });
 });
