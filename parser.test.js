@@ -1,5 +1,6 @@
-import { expect, test, describe } from 'vitest'
-import {parseLine} from './parser.js'
+import { expect, test, describe } from 'vitest';
+import parser, {parseLine} from './parser.js';
+import fs from 'node:fs/promises';
 
 describe('parseLine', () => {
     test('valid transfer line', () => {
@@ -22,3 +23,27 @@ describe('parseLine', () => {
         expect(parseLine(malformed)).toBe(false);
     });
 });
+
+describe('parser', () => {
+    test('should correctly read, parse and save the file', async () => {
+        const result = await parser('./test/input.csv', './test/output.csv');
+        const output = await fs.readFile('./test/output.csv', 'utf8');
+        const outputExpected = await fs.readFile('./test/expected-output.csv', 'utf8');
+        expect(result.totalLines).toBe(5);
+        expect(result.parsedLines).toBe(4);
+        expect(result.error).toBe(false);
+        expect(result.success).toBe(true);
+        expect(output).toEqual(outputExpected);
+    })
+
+    test('should correctly read, parse and save the file without output file', async () => {
+        const result = await parser('./test/input.csv');
+        const output = await fs.readFile('./test/output.csv', 'utf8');
+        const outputExpected = await fs.readFile('./test/input-output.csv', 'utf8');
+        expect(result.totalLines).toBe(5);
+        expect(result.parsedLines).toBe(4);
+        expect(result.error).toBe(false);
+        expect(result.success).toBe(true);
+        expect(output).toEqual(outputExpected);
+    })
+})

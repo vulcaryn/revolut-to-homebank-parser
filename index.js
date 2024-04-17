@@ -1,3 +1,6 @@
 import parser from './parser.js';
 
-await parser(process.argv[1], process.argv[1]);
+const startDate = Date.now();
+const result = await parser(process.argv[2], process.argv[3]);
+console.log(`Lines parsed: ${result.parsedLines} / ${result.totalLines}`);
+console.log(`Elapsed time: ${Date.now() - startDate} ms`);

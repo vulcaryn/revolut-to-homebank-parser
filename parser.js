@@ -1,5 +1,10 @@
 import { FileReader, FileWriter } from './files.tools.js';
 
+/**
+ * Transform the revolut type into the homebank value
+ * @param {string} type
+ * @returns {number}
+ */
 function computeType(type) {
     switch (type) {
         case "CARD_PAYMENT":
@@ -13,29 +18,53 @@ function computeType(type) {
     }
 }
 
+/**
+ * Line parser
+ * @param {string} line
+ * @returns {string|boolean}
+ */
 export function parseLine(line) {
     const [type,,,date,description,amount] = line.split(',');
     if (isNaN(amount)) return false;
     return `${date.split(' ')[0]};${computeType(type)};;${description};;${amount};;`;
 }
 
+/**
+ * File parser
+ * @param {string} inputFile
+ * @param {string} outputFile
+ * @returns {Promise<{parsedLines: number, success: boolean, totalLines: number, error: (string|boolean)}>}
+ */
 export default async function parser(inputFile, outputFile) {
+    let totalLines = 0;
+    let parsedLines = 0;
+
     if (!inputFile) {
-        return { error: 'An input file is required', success: false };
+        return { error: 'An input file is required', success: false, parsedLines, totalLines };
     }
-    const outputDestination = outputFile || `${inputFile.replace(/.csv$/, '')}-output.csv`
-    const fileReader = new FileReader(inputFile); // './test.csv'
-    const writeStream = new FileWriter(outputDestination); // 'result.csv'
-    const data = [];
-    await fileReader.start((line) => {
-        const parsedLine = parseLine(line);
-        if (parsedLine) {
-            data.push(parsedLine);
-        }
-    });
 
-    writeStream.insertLines(data);
-    writeStream.close();
+    try {
+        const outputDestination = outputFile || `${inputFile.replace(/.csv$/, '')}-output.csv`;
+        const fileReader = new FileReader(inputFile);
+        const writeStream = new FileWriter(outputDestination);
+        const data = [];
+        await fileReader.start((line) => {
+            if (line.length === 0) {
+                return;
+            }
+            totalLines += 1;
+            const parsedLine = parseLine(line);
+            if (parsedLine) {
+                parsedLines+=1;
+                data.push(parsedLine);
+            }
+        });
 
-    return { error: false, success: true };
+        writeStream.insertLines(data);
+        writeStream.close();
+
+        return { error: false, success: true, parsedLines, totalLines };
+    } catch (e) {
+        return { error: e.message, success: false, parsedLines, totalLines };
+    }
 }
