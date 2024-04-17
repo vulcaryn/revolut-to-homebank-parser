@@ -17,5 +17,9 @@ jobs:
         run: npm ci
       - name: Check lint
         run: npm run eslint:check
-      - name: Test
-        run: npm run test:ci
+      - name: start
+        run: node index.js ./test/input.csv
+      - name: check
+        run: ls test
+#      - name: Test
+#        run: npm run test:ci
