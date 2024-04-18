@@ -1,6 +1,6 @@
 {
   "name": "revolut-to-homebank-parser",
-  "version": "0.0.2-1",
+  "version": "0.0.2-2",
   "description": "A simple module to reformat revolut account extract into an Homebank compatible one",
   "main": "index.js",
   "type": "module",
