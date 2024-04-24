@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import parser from './parser.js';
 
 const startDate = Date.now();
