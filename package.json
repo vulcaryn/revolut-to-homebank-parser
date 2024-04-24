@@ -4,6 +4,7 @@
   "description": "A simple module to reformat revolut account extract into an Homebank compatible one",
   "main": "index.js",
   "type": "module",
+  "bin": "index.js",
   "scripts": {
     "test": "vitest",
     "test:ci": "vitest --run",
