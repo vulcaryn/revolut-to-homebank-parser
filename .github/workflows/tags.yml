@@ -1,8 +1,8 @@
-name: Push
+name: Tags
 
 on:
   push:
-    branches:  '*'
+    tags:  'v*'
 
 jobs:
   build:
@@ -13,9 +13,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 21.x
+          registry-url: 'https://registry.npmjs.org'
       - name: Install deps
         run: npm ci
-      - name: Check lint
-        run: npm run eslint:check
-      - name: Test
-        run: npm run test:ci
+      - name: Publish
+        run: npm publish
+        env:
+           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
