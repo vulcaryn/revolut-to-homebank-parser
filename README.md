@@ -10,7 +10,7 @@ TRANSFER,Savings,2024-03-06 08:28:55,2024-03-06 08:28:59,To EUR holidays,115.00,
 
 Homebank compatible format:
 ```csv
-2024-03-06;4;;To EUR Holidays;;115.00;;
+2024-03-06;0;;To EUR Holidays;;115.00;;
 ```
 
 All details of homebank format can be found [here](http://homebank.free.fr/help/misc-csvformat.html)
