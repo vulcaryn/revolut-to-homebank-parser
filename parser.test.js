@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 describe('parseLine', () => {
     test('valid transfer line', () => {
         const line = 'TRANSFER,Savings,2024-03-05 07:30:20,2024-03-05 07:30:20,To EUR savings,3.00,0.00,EUR,COMPLETED,32.02';
-        const expectedResult = '2024-03-05;4;;To EUR savings;;3.00;;';
+        const expectedResult = '2024-03-05;0;;To EUR savings;;3.00;;';
         expect(parseLine(line)).toBe(expectedResult);
     });
 

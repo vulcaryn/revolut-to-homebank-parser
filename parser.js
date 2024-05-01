@@ -10,7 +10,6 @@ function computeType (type) {
     case 'CARD_PAYMENT':
         return 6;
     case 'TRANSFER':
-        return 4;
     case 'EXCHANGE':
     case 'TOPUP':
     default:
