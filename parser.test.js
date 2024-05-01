@@ -4,8 +4,8 @@ import fs from 'node:fs/promises';
 
 describe('parseLine', () => {
     test('valid transfer line', () => {
-        const line = 'TRANSFER,Savings,2024-03-05 07:30:20,2024-03-05 07:30:20,To EUR savings,3.00,0.00,EUR,COMPLETED,32.02';
-        const expectedResult = '2024-03-05;0;;To EUR savings;;3.00;;';
+        const line = 'TRANSFER,Current,2024-03-05 07:30:20,2024-03-05 07:30:20,To EUR savings,3.00,0.00,EUR,COMPLETED,32.02';
+        const expectedResult = '2024-03-05;4;;To EUR savings;;3.00;;';
         expect(parseLine(line)).toBe(expectedResult);
     });
 
@@ -30,7 +30,7 @@ describe('parser', () => {
         const output = await fs.readFile('./test/output.csv', 'utf8');
         const outputExpected = await fs.readFile('./test/expected-output.csv', 'utf8');
         expect(result.totalLines).toBe(5);
-        expect(result.parsedLines).toBe(4);
+        expect(result.parsedLines).toBe(3);
         expect(result.error).toBe(false);
         expect(result.success).toBe(true);
         expect(output).toEqual(outputExpected);
@@ -41,7 +41,7 @@ describe('parser', () => {
         const output = await fs.readFile('./test/output.csv', 'utf8');
         const outputExpected = await fs.readFile('./test/input-output.csv', 'utf8');
         expect(result.totalLines).toBe(5);
-        expect(result.parsedLines).toBe(4);
+        expect(result.parsedLines).toBe(3);
         expect(result.error).toBe(false);
         expect(result.success).toBe(true);
         expect(output).toEqual(outputExpected);
