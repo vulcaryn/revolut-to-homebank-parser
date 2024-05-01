@@ -15,7 +15,7 @@ jobs:
           node-version: 21.x
           registry-url: 'https://registry.npmjs.org'
       - name: Install deps
-        run: npm ci --production
+        run: npm ci --force --production
       - name: Publish
         run: npm publish
         env:
