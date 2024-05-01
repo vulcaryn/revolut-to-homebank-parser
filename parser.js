@@ -10,6 +10,7 @@ function computeType (type) {
     case 'CARD_PAYMENT':
         return 6;
     case 'TRANSFER':
+        return 4;
     case 'EXCHANGE':
     case 'TOPUP':
     default:
@@ -23,8 +24,9 @@ function computeType (type) {
  * @returns {string|boolean}
  */
 export function parseLine (line) {
-    const [type,,, date, description, amount] = line.split(',');
-    if (isNaN(amount)) return false;
+    const [type, product,, date, description, amount] = line.split(',');
+    if (isNaN(parseInt(amount, 10))) return false;
+    if (product !== 'Current') return false;
     return `${date.split(' ')[0]};${computeType(type)};;${description};;${amount};;`;
 }
 
